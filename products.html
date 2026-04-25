@@ -4,16 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Products - Capital Appliances</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     />
+
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap");
     </style>
   </head>
+
   <body class="font-sans bg-gray-50">
+    <!-- NAV -->
     <nav class="bg-white border-b sticky top-0 z-50 shadow-sm">
       <div class="max-w-7xl mx-auto px-6">
         <div class="flex justify-between items-center h-20">
@@ -34,11 +39,13 @@
               Capital <span class="text-sky-600">Appliances</span>
             </h1>
           </div>
+
           <div class="hidden md:flex gap-x-10 text-lg font-medium">
             <a href="index.html">Home</a>
             <a href="products.html" class="text-sky-600 font-semibold"
               >Products</a
             >
+
             <button
               onclick="openWhatsApp()"
               class="bg-emerald-500 text-white px-6 py-3 rounded-3xl flex items-center gap-2"
@@ -46,6 +53,7 @@
               <i class="fa-brands fa-whatsapp"></i> Contact
             </button>
           </div>
+
           <button
             onclick="alert('Mobile menu - use top links for now')"
             class="md:hidden text-3xl"
@@ -56,61 +64,55 @@
       </div>
     </nav>
 
+    <!-- PAGE -->
     <div class="max-w-7xl mx-auto px-6 py-16">
       <h1 class="text-5xl font-semibold text-center mb-2">
         Our Premium Products
       </h1>
+
       <p class="text-center text-gray-600 mb-12">
         Browse our range of home, office and commercial appliances
       </p>
+
+      <!-- NIGERIA CARD -->
       <div class="bg-white rounded-3xl shadow p-8 mb-12 text-center">
+        <img
+          src="https://flagcdn.com/ng.svg"
+          alt="Nigeria Flag"
+          class="w-12 h-12 mx-auto mb-4"
+        />
 
-  <!-- Flag -->
-  <img
-   src="https://flagcdn.com/ng.svg" 
-   alt="Nigeria Flag"
-    class="w-12 h-12 mx-auto mb-4">
+        <h2 class="text-2xl font-semibold">Proudly Nigerian</h2>
 
+        <p class="text-gray-600 mt-2">
+          Lagos • Ibadan • Abuja • Nationwide delivery
+        </p>
 
-  <!-- Title -->
-  <h2 class="text-2xl font-semibold">
-    Proudly Nigerian
-  </h2>
+        <div class="grid grid-cols-3 gap-6 mt-8 text-center">
+          <div>
+            <h3 class="text-2xl font-bold text-sky-600">100%</h3>
+            <p class="text-xs text-gray-500">Genuine Products</p>
+          </div>
 
-  <!-- Locations -->
-  <p class="text-gray-600 mt-2">
-    Lagos • Ibadan • Abuja • Nationwide delivery
-  </p>
+          <div>
+            <h3 class="text-2xl font-bold text-sky-600">15+</h3>
+            <p class="text-xs text-gray-500">Premium Brands</p>
+          </div>
 
-  <!-- Stats -->
-  <div class="grid grid-cols-3 gap-6 mt-8 text-center">
-    <div>
-  <h3 class="text-2xl font-bold text-sky-600">100%</h3>
-  <p class="text-xs text-gray-500">Genuine Products</p>
-</div>
-    <div>
-      <h3 class="text-2xl font-bold text-sky-600">15+</h3>
-      <p class="text-xs text-gray-500">Premium Brands</p>
-    </div>
-
-    <div>
-      <h3 class="text-2xl font-bold text-sky-800">∞</h3>
-      <p class="text-xs text-gray-500">After-sales Support</p>
-    </div>
-
-  </div>
-
-</div>
-
-        
+          <div>
+            <h3 class="text-2xl font-bold text-sky-800">∞</h3>
+            <p class="text-xs text-gray-500">After-sales Support</p>
+          </div>
         </div>
       </div>
+
+      <!-- PRODUCTS GRID (UPDATED) -->
       <div
         id="products-grid"
-        class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8"
-      >
-        <!-- Products will appear here -->
-      </div>
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+      ></div>
+
+      <!-- ENQUIRY -->
       <div class="mt-20 bg-white rounded-3xl shadow p-10 text-center">
         <h2 class="text-3xl font-semibold mb-4">Not ready to buy yet?</h2>
         <p class="text-gray-600 mb-8">
@@ -125,7 +127,8 @@
         </button>
       </div>
     </div>
-    <!-- Floating WhatsApp -->
+
+    <!-- FLOATING WHATSAPP -->
     <button
       onclick="openWhatsApp()"
       class="fixed bottom-8 right-8 bg-[#25D366] text-white w-16 h-16 rounded-3xl shadow-2xl flex items-center justify-center text-4xl z-50"
@@ -214,26 +217,47 @@
         grid.innerHTML = "";
 
         products.forEach((p) => {
-          const card = `
-                <div class="bg-white rounded-3xl overflow-hidden shadow hover:shadow-2xl">
-                    <img src="${p.img}" alt="${p.name}" class="w-full h-64 object-cover" 
-                         onerror="this.src='https://via.placeholder.com/600x400/cccccc/666666?text=No+Image+Found'">
-                    <div class="p-6">
-                        <span class="uppercase text-xs text-sky-600 font-medium">${p.category}</span>
-                        <h3 class="text-xl font-semibold mt-2">${p.name}</h3>
-                        <p class="text-3xl font-bold text-gray-900 mt-4">${p.price}</p>
-                        <button onclick="enquire('${p.name}', '${p.price}')" 
-                                class="mt-8 w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl font-medium">
-                            💬 Buy Now On Whatsapp
-                        </button>
-                    </div>
-                </div>`;
-          grid.innerHTML += card;
+          grid.innerHTML += `
+            <div class="bg-white rounded-3xl shadow hover:shadow-xl overflow-hidden flex flex-col">
+
+              <!-- IMAGE (SQUARE FEEL) -->
+              <div class="aspect-square overflow-hidden">
+                <img
+                  src="${p.img}"
+                  alt="${p.name}"
+                  class="w-full h-full object-cover"
+                  onerror="this.src='https://via.placeholder.com/600x600/cccccc/666666?text=No+Image'"
+                />
+              </div>
+
+              <!-- CONTENT -->
+              <div class="p-5 flex flex-col flex-1">
+                <span class="text-xs uppercase text-sky-600 font-medium">
+                  ${p.category}
+                </span>
+
+                <h3 class="text-lg font-semibold mt-2">
+                  ${p.name}
+                </h3>
+
+                <p class="text-2xl font-bold mt-3">
+                  ${p.price}
+                </p>
+
+                <button
+                  onclick="enquire('${p.name}', '${p.price}')"
+                  class="mt-auto w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl font-medium"
+                >
+                  💬 Buy on WhatsApp
+                </button>
+              </div>
+            </div>
+          `;
         });
       }
 
       function enquire(name, price) {
-        const phone = "2348091145666"; // ← CHANGE TO YOUR REAL NUMBER
+        const phone = "2348091145666";
         const text = encodeURIComponent(
           `Hello, I'm interested in: ${name} - Price: ${price}`,
         );
@@ -242,20 +266,18 @@
 
       function openWhatsApp() {
         const phone = "2348091145666";
-
         const text = encodeURIComponent(
           `Hello, I’d like to make an enquiry about your appliances.`,
         );
-
         window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
       }
 
-      // Load the products
       window.onload = renderProducts;
     </script>
+
+    <!-- FOOTER -->
     <footer class="bg-gray-900 text-white mt-20">
       <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
-        <!-- Brand -->
         <div>
           <h3 class="text-2xl font-semibold mb-3">
             Capital <span class="text-sky-400">Appliances</span>
@@ -265,21 +287,16 @@
           </p>
         </div>
 
-        <!-- Quick Links -->
         <div>
           <h4 class="font-semibold mb-4">Quick Links</h4>
           <ul class="space-y-2 text-gray-400">
-            <li><a href="index.html" class="hover:text-white">Home</a></li>
-            <li>
-              <a href="products.html" class="hover:text-white">Products</a>
-            </li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
           </ul>
         </div>
 
-        <!-- Contact -->
         <div>
           <h4 class="font-semibold mb-4">Contact</h4>
-          <p class="text-gray-400 mb-4">Need help choosing a product?</p>
           <button
             onclick="openWhatsApp()"
             class="bg-emerald-500 px-6 py-3 rounded-xl"
