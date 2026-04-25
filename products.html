@@ -18,16 +18,25 @@
   </head>
 
   <body class="font-sans bg-gray-50">
+    <!-- NAV -->
     <nav class="bg-white border-b sticky top-0 z-50 shadow-sm">
       <div class="max-w-7xl mx-auto px-6">
         <div class="flex justify-between items-center h-20">
           <h1 class="text-3xl font-semibold">
             Capital <span class="text-sky-600">Appliances</span>
           </h1>
+
+          <button
+            onclick="openWhatsApp()"
+            class="bg-emerald-500 text-white px-6 py-3 rounded-3xl"
+          >
+            Contact
+          </button>
         </div>
       </div>
     </nav>
 
+    <!-- MAIN -->
     <div class="max-w-7xl mx-auto px-6 py-16">
       <h1 class="text-5xl font-semibold text-center mb-2">
         Our Premium Products
@@ -47,7 +56,6 @@
           oninput="handleSearch(this.value)"
         />
 
-        <!-- SUGGESTIONS DROPDOWN -->
         <div
           id="suggestions"
           class="absolute w-full bg-white shadow-lg rounded-2xl mt-2 hidden max-h-64 overflow-y-auto z-50"
@@ -71,7 +79,67 @@
           Ask on WhatsApp
         </button>
       </div>
+
+      <!-- 👇 RESTORED ENQUIRY SECTION -->
+      <div class="mt-20 bg-white rounded-3xl shadow p-10 text-center">
+        <h2 class="text-3xl font-semibold mb-4">Not ready to buy yet?</h2>
+
+        <p class="text-gray-600 mb-8">
+          Ask us anything about our products, pricing, or installation.
+        </p>
+
+        <button
+          onclick="openWhatsApp()"
+          class="bg-sky-600 hover:bg-sky-700 text-white px-8 py-4 rounded-2xl text-lg font-medium"
+        >
+          💬 Make an Enquiry
+        </button>
+      </div>
     </div>
+
+    <!-- FLOAT -->
+    <button
+      onclick="openWhatsApp()"
+      class="fixed bottom-8 right-8 bg-[#25D366] text-white w-16 h-16 rounded-3xl shadow-2xl flex items-center justify-center text-4xl z-50"
+    >
+      <i class="fa-brands fa-whatsapp"></i>
+    </button>
+
+    <!-- FOOTER (RESTORED) -->
+    <footer class="bg-gray-900 text-white mt-20">
+      <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
+        <div>
+          <h3 class="text-2xl font-semibold mb-3">
+            Capital <span class="text-sky-400">Appliances</span>
+          </h3>
+          <p class="text-gray-400">
+            Premium home and commercial appliances built for modern living.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Contact</h4>
+          <button
+            onclick="openWhatsApp()"
+            class="bg-emerald-500 px-6 py-3 rounded-xl"
+          >
+            Chat on WhatsApp
+          </button>
+        </div>
+      </div>
+
+      <div class="text-center text-gray-500 text-sm pb-6">
+        © 2026 Capital Appliances. All rights reserved.
+      </div>
+    </footer>
 
     <script>
       const products = [
@@ -79,27 +147,25 @@
           name: "Premium Kitchen Extractor",
           category: "Kitchen",
           price: "₦450,000",
+          img: "images/extractor.jpg",
         },
         {
           name: "Built-in Electric Oven",
           category: "Kitchen",
           price: "₦680,000",
+          img: "images/oven.jpg",
         },
         {
           name: "Heavy Duty Gas Cooker",
           category: "Commercial",
           price: "₦520,000",
-        },
-        { name: "Microwave Oven", category: "Home", price: "₦320,000" },
-        {
-          name: "Wall Mounted Extractor",
-          category: "Kitchen",
-          price: "₦480,000",
+          img: "images/cooker.jpg",
         },
         {
-          name: "Industrial Gas Cooker",
-          category: "Commercial",
-          price: "₦750,000",
+          name: "Microwave Oven",
+          category: "Home",
+          price: "₦320,000",
+          img: "images/microwave.jpg",
         },
       ];
 
@@ -121,20 +187,19 @@
 
         list.forEach((p) => {
           grid.innerHTML += `
-            <div class="bg-white rounded-3xl shadow overflow-hidden">
+            <div class="bg-white rounded-3xl overflow-hidden shadow">
 
-              <div class="aspect-square bg-gray-100"></div>
+              <img src="${p.img}" class="w-full h-64 object-cover"
+                onerror="this.src='https://via.placeholder.com/600x400'">
 
-              <div class="p-5">
-                <p class="text-xs text-sky-600">${p.category}</p>
-                <h3 class="font-semibold mt-1">${p.name}</h3>
-                <p class="text-xl font-bold mt-2">${p.price}</p>
+              <div class="p-6">
+                <span class="text-xs text-sky-600 uppercase">${p.category}</span>
+                <h3 class="text-xl font-semibold mt-2">${p.name}</h3>
+                <p class="text-3xl font-bold mt-4">${p.price}</p>
 
-                <button
-                  onclick="enquire('${p.name}', '${p.price}')"
-                  class="mt-4 w-full bg-emerald-500 text-white py-3 rounded-2xl"
-                >
-                  Buy on WhatsApp
+                <button onclick="enquire('${p.name}','${p.price}')"
+                  class="mt-6 w-full py-4 bg-emerald-500 text-white rounded-2xl">
+                  💬 Buy on WhatsApp
                 </button>
               </div>
             </div>
@@ -142,15 +207,14 @@
         });
       }
 
-      // 🔥 SEARCH + SUGGESTIONS
       function handleSearch(query) {
         lastSearch = query;
-        const q = query.toLowerCase().trim();
 
-        const suggestionsBox = document.getElementById("suggestions");
+        const q = query.toLowerCase().trim();
+        const suggestions = document.getElementById("suggestions");
 
         if (!q) {
-          suggestionsBox.classList.add("hidden");
+          suggestions.classList.add("hidden");
           renderProducts(products);
           return;
         }
@@ -164,31 +228,28 @@
         filteredProducts = matches;
         renderProducts(matches);
 
-        // suggestions UI
         if (matches.length > 0) {
-          suggestionsBox.innerHTML = matches
+          suggestions.innerHTML = matches
             .slice(0, 5)
             .map(
               (p) => `
-              <div
-                onclick="selectSuggestion('${p.name}')"
-                class="p-3 hover:bg-gray-100 cursor-pointer border-b"
-              >
-                <p class="font-medium">${p.name}</p>
-                <p class="text-xs text-gray-500">${p.category}</p>
-              </div>
-            `,
+            <div onclick="selectSuggestion('${p.name}')"
+              class="p-3 border-b hover:bg-gray-100 cursor-pointer">
+              <p class="font-medium">${p.name}</p>
+              <p class="text-xs text-gray-500">${p.category}</p>
+            </div>
+          `,
             )
             .join("");
 
-          suggestionsBox.classList.remove("hidden");
+          suggestions.classList.remove("hidden");
         } else {
-          suggestionsBox.innerHTML = `
+          suggestions.innerHTML = `
             <div class="p-4 text-gray-600">
-              No match found — you can ask on WhatsApp instead.
+              No match found — try WhatsApp instead.
             </div>
           `;
-          suggestionsBox.classList.remove("hidden");
+          suggestions.classList.remove("hidden");
         }
       }
 
@@ -209,13 +270,10 @@
       function openWhatsApp() {
         const phone = "2348091145666";
 
-        let message = "";
-
-        if (lastSearch && filteredProducts.length === 0) {
-          message = `Please I’m looking for the availability of: ${lastSearch}`;
-        } else {
-          message = "Hello, I’d like to make an enquiry about your appliances.";
-        }
+        let message =
+          lastSearch && filteredProducts.length === 0
+            ? `Please I’m looking for the availability of: ${lastSearch}`
+            : "Hello, I’d like to make an enquiry about your appliances.";
 
         window.open(
           `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
