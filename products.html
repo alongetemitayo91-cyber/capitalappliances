@@ -14,73 +14,68 @@
     </style>
   </head>
   <body class="font-sans bg-gray-50">
-    <!-- NAVBAR (same as home) -->
     <nav class="bg-white border-b sticky top-0 z-50 shadow-sm">
       <div class="max-w-7xl mx-auto px-6">
         <div class="flex justify-between items-center h-20">
           <div class="flex items-center gap-x-3">
             <img
-              src="/public/logo.png"
+              src="images/logo.jpg"
               alt="Logo"
-              class="h-12 w-auto"
+              class="h-12 object-contain"
               onerror="
                 this.src =
-                  'https://via.placeholder.com/180x50/0ea5e9/ffffff?text=CAPITAL'
+                  'https://via.placeholder.com/200x50/0ea5e9/ffffff?text=CAPITAL'
               "
             />
-            <h1 class="text-3xl font-semibold tracking-tighter">
-              capital <span class="text-sky-600">appliances</span>
+            <h1
+              class="text-3xl font-semibold tracking-tighter"
+              style="font-family: &quot;Space Grotesk&quot;, sans-serif"
+            >
+              Capital <span class="text-sky-600">Appliances</span>
             </h1>
           </div>
-          <div class="hidden md:flex gap-x-10 text-lg">
-            <a href="index.html" class="hover:text-sky-600">Home</a>
+          <div class="hidden md:flex gap-x-10 text-lg font-medium">
+            <a href="index.html">Home</a>
             <a href="products.html" class="text-sky-600 font-semibold"
               >Products</a
             >
             <button
               onclick="openWhatsApp()"
-              class="flex items-center gap-x-2 px-6 py-3 bg-emerald-500 text-white rounded-3xl"
+              class="bg-emerald-500 text-white px-6 py-3 rounded-3xl flex items-center gap-2"
             >
               <i class="fa-brands fa-whatsapp"></i> Contact
             </button>
           </div>
-          <button onclick="toggleMobileNav()" class="md:hidden text-3xl">
+          <button
+            onclick="alert('Mobile menu - use top links for now')"
+            class="md:hidden text-3xl"
+          >
             ☰
           </button>
         </div>
       </div>
     </nav>
 
-    <div class="max-w-7xl mx-auto px-6 py-12">
-      <h1 class="text-5xl font-semibold tracking-tighter text-center mb-4">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+      <h1 class="text-5xl font-semibold text-center mb-2">
         Our Premium Products
       </h1>
-      <p class="text-center text-gray-600 mb-12 text-xl">
-        Home • Office • Commercial Appliances
+      <p class="text-center text-gray-600 mb-12">
+        Browse our range of home, office and commercial appliances
       </p>
 
       <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         id="products-grid"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
-        <!-- Products will be loaded by JavaScript -->
-      </div>
-
-      <div class="text-center mt-16">
-        <button
-          onclick="openWhatsApp()"
-          class="px-12 py-6 bg-emerald-500 hover:bg-emerald-600 text-white text-2xl font-semibold rounded-3xl flex items-center gap-x-4 mx-auto"
-        >
-          <i class="fa-brands fa-whatsapp text-4xl"></i>
-          Need something specific? Chat with us on WhatsApp
-        </button>
+        <!-- Products will appear here -->
       </div>
     </div>
 
     <!-- Floating WhatsApp -->
     <button
       onclick="openWhatsApp()"
-      class="fixed bottom-8 right-8 w-16 h-16 bg-[#25D366] rounded-3xl shadow-2xl flex items-center justify-center text-white text-4xl z-50"
+      class="fixed bottom-8 right-8 bg-[#25D366] text-white w-16 h-16 rounded-3xl shadow-2xl flex items-center justify-center text-4xl z-50"
     >
       <i class="fa-brands fa-whatsapp"></i>
     </button>
@@ -88,102 +83,114 @@
     <script>
       const products = [
         {
-          name: "Samsung 700L Smart Refrigerator",
-          category: "Home",
-          price: "₦1,850,000",
-          img: "/public/samsung-fridge-700l.jpg",
+          name: "Premium Kitchen Extractor",
+          category: "Kitchen",
+          price: "₦450,000",
+          img: "images/extractor.jpg",
         },
         {
-          name: "LG 10kg Inverter Washing Machine",
-          category: "Home",
-          price: "₦785,000",
-          img: "/public/lg-washing-machine-10kg.jpg",
-        },
-        {
-          name: "Bosch Built-in Electric Oven",
-          category: "Home",
-          price: "₦920,000",
-          img: "/public/bosch-oven.jpg",
-        },
-        {
-          name: "Daikin 2HP Split Air Conditioner",
-          category: "Office",
-          price: "₦1,150,000",
-          img: "/public/daikin-ac-2hp.jpg",
-        },
-        {
-          name: "Hisense 16kg Top Load Washing Machine",
-          category: "Home",
-          price: "₦650,000",
-          img: "/public/hisense-washing-machine.jpg",
-        },
-        {
-          name: "Haier Thermocool 1500L Chest Freezer",
-          category: "Commercial",
-          price: "₦1,450,000",
-          img: "/public/thermocool-freezer.jpg",
-        },
-        {
-          name: "Industrial 3-Burner Gas Cooker",
-          category: "Commercial",
+          name: "Built-in Electric Oven",
+          category: "Kitchen",
           price: "₦680,000",
-          img: "/public/gas-cooker.jpg",
+          img: "images/oven.jpg",
         },
         {
-          name: "Samsung Side-by-Side Refrigerator",
-          category: "Home",
-          price: "₦2,350,000",
-          img: "/public/samsung-side-by-side.jpg",
+          name: "Heavy Duty Gas Cooker",
+          category: "Commercial",
+          price: "₦520,000",
+          img: "images/cooker.jpg",
         },
-        // ← Add more products here following the same pattern
+        {
+          name: "Stainless Steel Cooker",
+          category: "Kitchen",
+          price: "₦580,000",
+          img: "images/cooker2.jpg",
+        },
+        {
+          name: "Industrial Gas Cooker",
+          category: "Commercial",
+          price: "₦750,000",
+          img: "images/cooker3.jpg",
+        },
+        {
+          name: "Microwave Oven",
+          category: "Home",
+          price: "₦320,000",
+          img: "images/microwave.jpg",
+        },
+        {
+          name: "Premium Extractor Hood",
+          category: "Kitchen",
+          price: "₦520,000",
+          img: "images/extractor-premium.jpg",
+        },
+        {
+          name: "High-End Extractor",
+          category: "Kitchen",
+          price: "₦580,000",
+          img: "images/extractorpremium2.jpg",
+        },
+        {
+          name: "Wall Mounted Extractor",
+          category: "Kitchen",
+          price: "₦480,000",
+          img: "images/extractor2.jpg",
+        },
+        {
+          name: "Powerful Extractor",
+          category: "Kitchen",
+          price: "₦495,000",
+          img: "images/extractor3.jpg",
+        },
+        {
+          name: "Modern Appliance",
+          category: "Home",
+          price: "₦890,000",
+          img: "images/something1.jpg",
+        },
+        {
+          name: "Premium Appliance Set",
+          category: "Home",
+          price: "₦670,000",
+          img: "images/something2.jpg",
+        },
       ];
 
       function renderProducts() {
-        const container = document.getElementById("products-grid");
-        container.innerHTML = "";
+        const grid = document.getElementById("products-grid");
+        grid.innerHTML = "";
 
-        products.forEach((product) => {
+        products.forEach((p) => {
           const card = `
-            <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
-                <img src="${product.img}" alt="${product.name}" 
-                     class="w-full h-64 object-cover" 
-                     onerror="this.src='https://via.placeholder.com/600x400?text=Product+Image'">
-                <div class="p-6">
-                    <span class="text-xs font-medium uppercase tracking-widest text-sky-600">${product.category}</span>
-                    <h3 class="text-2xl font-semibold mt-2 leading-tight">${product.name}</h3>
-                    <p class="text-3xl font-bold text-gray-900 mt-6">${product.price}</p>
-                    
-                    <button onclick="enquire('${product.name}')" 
-                            class="mt-8 w-full py-5 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-2xl flex items-center justify-center gap-x-3 text-lg">
-                        <i class="fa-brands fa-whatsapp text-2xl"></i>
-                        Enquire on WhatsApp
-                    </button>
-                </div>
-            </div>`;
-          container.innerHTML += card;
+                <div class="bg-white rounded-3xl overflow-hidden shadow hover:shadow-2xl">
+                    <img src="${p.img}" alt="${p.name}" class="w-full h-64 object-cover" 
+                         onerror="this.src='https://via.placeholder.com/600x400/cccccc/666666?text=No+Image+Found'">
+                    <div class="p-6">
+                        <span class="uppercase text-xs text-sky-600 font-medium">${p.category}</span>
+                        <h3 class="text-xl font-semibold mt-2">${p.name}</h3>
+                        <p class="text-3xl font-bold text-gray-900 mt-4">${p.price}</p>
+                        <button onclick="enquire('${p.name}')" 
+                                class="mt-8 w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl font-medium">
+                            💬 Enquire on WhatsApp
+                        </button>
+                    </div>
+                </div>`;
+          grid.innerHTML += card;
         });
       }
 
-      function enquire(productName) {
-        const phone = "234XXXXXXXXXX"; // ← CHANGE TO YOUR REAL WHATSAPP NUMBER
-        const message = encodeURIComponent(
-          `Hello! I'm interested in this product: ${productName}. Please send me more details, current price, and availability.`,
-        );
-        window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+      function enquire(name) {
+        const phone = "2348091145666"; // ← CHANGE TO YOUR REAL NUMBER
+        const text = encodeURIComponent(`Hello, I'm interested in: ${name}`);
+        window.open(`https://wa.me/\( {phone}?text= \){text}`, "_blank");
       }
 
       function openWhatsApp() {
-        const phone = "234XXXXXXXXXX"; // ← CHANGE TO YOUR REAL WHATSAPP NUMBER
+        const phone = "2348091145666"; // ← CHANGE TO YOUR REAL NUMBER
         window.open(`https://wa.me/${phone}`, "_blank");
       }
 
-      function toggleMobileNav() {
-        alert(
-          "Mobile menu will be improved soon. Use the top navigation links for now.",
-        );
-      }
-
-      // Load products when the page opens
+      // Load the products
       window.onload = renderProducts;
     </script>
   </body>
