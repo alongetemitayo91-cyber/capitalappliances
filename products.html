@@ -43,11 +43,11 @@
       </h1>
 
       <p class="text-center text-gray-600 mb-6">
-        Search and find what you need
+        Search, filter and find what you need
       </p>
 
       <!-- SEARCH -->
-      <div class="max-w-xl mx-auto mb-10 relative">
+      <div class="max-w-xl mx-auto mb-6 relative">
         <input
           id="searchInput"
           type="text"
@@ -60,6 +60,37 @@
           id="suggestions"
           class="absolute w-full bg-white shadow-lg rounded-2xl mt-2 hidden max-h-64 overflow-y-auto z-50"
         ></div>
+      </div>
+
+      <!-- CATEGORY FILTER BUTTONS -->
+      <div class="flex flex-wrap justify-center gap-3 mb-10">
+        <button
+          onclick="filterCategory('All')"
+          class="px-5 py-2 rounded-2xl bg-gray-200 hover:bg-gray-300"
+        >
+          All
+        </button>
+
+        <button
+          onclick="filterCategory('Kitchen')"
+          class="px-5 py-2 rounded-2xl bg-gray-200 hover:bg-gray-300"
+        >
+          Kitchen
+        </button>
+
+        <button
+          onclick="filterCategory('Home')"
+          class="px-5 py-2 rounded-2xl bg-gray-200 hover:bg-gray-300"
+        >
+          Home
+        </button>
+
+        <button
+          onclick="filterCategory('Commercial')"
+          class="px-5 py-2 rounded-2xl bg-gray-200 hover:bg-gray-300"
+        >
+          Commercial
+        </button>
       </div>
 
       <!-- PRODUCTS -->
@@ -80,7 +111,7 @@
         </button>
       </div>
 
-      <!-- 👇 RESTORED ENQUIRY SECTION -->
+      <!-- ENQUIRY -->
       <div class="mt-20 bg-white rounded-3xl shadow p-10 text-center">
         <h2 class="text-3xl font-semibold mb-4">Not ready to buy yet?</h2>
 
@@ -90,7 +121,7 @@
 
         <button
           onclick="openWhatsApp()"
-          class="bg-sky-600 hover:bg-sky-700 text-white px-8 py-4 rounded-2xl text-lg font-medium"
+          class="bg-sky-600 text-white px-8 py-4 rounded-2xl text-lg font-medium"
         >
           💬 Make an Enquiry
         </button>
@@ -104,42 +135,6 @@
     >
       <i class="fa-brands fa-whatsapp"></i>
     </button>
-
-    <!-- FOOTER (RESTORED) -->
-    <footer class="bg-gray-900 text-white mt-20">
-      <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
-        <div>
-          <h3 class="text-2xl font-semibold mb-3">
-            Capital <span class="text-sky-400">Appliances</span>
-          </h3>
-          <p class="text-gray-400">
-            Premium home and commercial appliances built for modern living.
-          </p>
-        </div>
-
-        <div>
-          <h4 class="font-semibold mb-4">Quick Links</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="font-semibold mb-4">Contact</h4>
-          <button
-            onclick="openWhatsApp()"
-            class="bg-emerald-500 px-6 py-3 rounded-xl"
-          >
-            Chat on WhatsApp
-          </button>
-        </div>
-      </div>
-
-      <div class="text-center text-gray-500 text-sm pb-6">
-        © 2026 Capital Appliances. All rights reserved.
-      </div>
-    </footer>
 
     <script>
       const products = [
@@ -162,15 +157,40 @@
           img: "images/cooker.jpg",
         },
         {
+          name: "Stainless Steel Cooker",
+          category: "Kitchen",
+          price: "₦580,000",
+          img: "images/cooker2.jpg",
+        },
+        {
+          name: "Industrial Gas Cooker",
+          category: "Commercial",
+          price: "₦750,000",
+          img: "images/cooker3.jpg",
+        },
+        {
           name: "Microwave Oven",
           category: "Home",
           price: "₦320,000",
           img: "images/microwave.jpg",
         },
+        {
+          name: "Premium Extractor Hood",
+          category: "Kitchen",
+          price: "₦520,000",
+          img: "images/extractor-premium.jpg",
+        },
+        {
+          name: "Wall Mounted Extractor",
+          category: "Kitchen",
+          price: "₦480,000",
+          img: "images/extractor2.jpg",
+        },
       ];
 
       let filteredProducts = [...products];
       let lastSearch = "";
+      let activeCategory = "All";
 
       function renderProducts(list) {
         const grid = document.getElementById("products-grid");
@@ -207,30 +227,58 @@
         });
       }
 
+      // 🔥 CATEGORY FILTER
+      function filterCategory(category) {
+        activeCategory = category;
+
+        applyFilters();
+      }
+
+      // 🔥 SEARCH
       function handleSearch(query) {
         lastSearch = query;
+        applyFilters(query);
+      }
 
-        const q = query.toLowerCase().trim();
-        const suggestions = document.getElementById("suggestions");
+      // 🔥 COMBINED FILTER ENGINE
+      function applyFilters(searchValue = lastSearch) {
+        let result = products;
+
+        // category filter
+        if (activeCategory !== "All") {
+          result = result.filter((p) => p.category === activeCategory);
+        }
+
+        // search filter
+        const q = searchValue.toLowerCase().trim();
+
+        if (q) {
+          result = result.filter(
+            (p) =>
+              p.name.toLowerCase().includes(q) ||
+              p.category.toLowerCase().includes(q),
+          );
+        }
+
+        filteredProducts = result;
+        renderProducts(result);
+
+        updateSuggestions(q);
+      }
+
+      // 🔥 SUGGESTIONS
+      function updateSuggestions(q) {
+        const box = document.getElementById("suggestions");
 
         if (!q) {
-          suggestions.classList.add("hidden");
-          renderProducts(products);
+          box.classList.add("hidden");
           return;
         }
 
-        const matches = products.filter(
-          (p) =>
-            p.name.toLowerCase().includes(q) ||
-            p.category.toLowerCase().includes(q),
-        );
-
-        filteredProducts = matches;
-        renderProducts(matches);
+        const matches = filteredProducts.slice(0, 5);
 
         if (matches.length > 0) {
-          suggestions.innerHTML = matches
-            .slice(0, 5)
+          box.innerHTML = matches
             .map(
               (p) => `
             <div onclick="selectSuggestion('${p.name}')"
@@ -242,14 +290,14 @@
             )
             .join("");
 
-          suggestions.classList.remove("hidden");
+          box.classList.remove("hidden");
         } else {
-          suggestions.innerHTML = `
+          box.innerHTML = `
             <div class="p-4 text-gray-600">
-              No match found — try WhatsApp instead.
+              Not found — try WhatsApp.
             </div>
           `;
-          suggestions.classList.remove("hidden");
+          box.classList.remove("hidden");
         }
       }
 
@@ -272,7 +320,7 @@
 
         let message =
           lastSearch && filteredProducts.length === 0
-            ? `Please I’m looking for the availability of the product: ${lastSearch}`
+            ? `Please I’m looking for the availability of: ${lastSearch}`
             : "Hello, I’d like to make an enquiry about your appliances.";
 
         window.open(
