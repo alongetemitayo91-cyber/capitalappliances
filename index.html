@@ -20,819 +20,238 @@
         background-position: center;
         background-attachment: fixed;
       }
+
+      .nav-link {
+        position: relative;
+      }
+      .nav-link:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 3px;
+        bottom: -2px;
+        left: 0;
+        background-color: #0ea5e9;
+      }
+      .nav-link:hover:after {
+        width: 100%;
+      }
     </style>
   </head>
-  <body>
-    <!doctype html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          name="description"
-          content="Capital Appliances - Premium Home, Office & Commercial Appliances in Nigeria"
-        />
-        <title>
-          Capital Appliances | Premium Home, Office & Commercial Appliances
-        </title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        />
-        <style>
-          @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap");
-
-          :root {
-            --whatsapp-green: #25d366;
-          }
-
-          * {
-            transition-property:
-              color, background-color, border-color, text-decoration-color,
-              fill, stroke;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 150ms;
-          }
-
-          .tailwind-ready .hero-bg {
-            background-image: url("images/background.jpg");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-          }
-
-          .nav-link {
-            position: relative;
-          }
-
-          .nav-link:after {
-            content: "";
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: -2px;
-            left: 0;
-            background-color: #0ea5e9;
-          }
-
-          .nav-link:hover:after {
-            width: 100%;
-          }
-
-          .product-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          }
-
-          .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
-          }
-
-          .whatsapp-float {
-            animation: pulse 2s infinite;
-          }
-
-          @keyframes pulse {
-            0%,
-            100% {
-              transform: scale(1);
-            }
-            50% {
-              transform: scale(1.1);
-            }
-          }
-
-          .mobile-nav {
-            animation: slideDown 0.3s ease forwards;
-          }
-
-          @keyframes slideDown {
-            from {
-              opacity: 0;
-              transform: translateY(-20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-        </style>
-      </head>
-      <body class="tailwind-ready font-sans">
-        <!-- NAVBAR -->
-        <nav class="bg-white border-b sticky top-0 z-50 shadow-sm">
-          <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between items-center h-20">
-              <!-- Logo -->
-              <div class="flex items-center gap-x-3">
-                <img
-                  src="images/logo.jpg"
-                  alt="Capital Appliances Logo"
-                  class="h-12 object-contain"
-                />
-                <h1
-                  class="text-3x1 font-semibold tracking-tighter text-gray-900"
-                  style="font-family: &quot;Space Grotesk&quot;, sans-serif"
-                >
-                  capital <span class="text-sky-600">appliances</span>
-                </h1>
-              </div>
-
-              <!-- Desktop Navigation -->
-              <div
-                class="hidden md:flex items-center gap-x-10 text-lg font-medium"
-              >
-                <a
-                  href="#"
-                  onclick="navigateToSection('hero')"
-                  class="nav-link text-gray-700 hover:text-sky-600"
-                  >Home</a
-                >
-                <a
-                  href="#"
-                  onclick="navigateToSection('products')"
-                  class="nav-link text-gray-700 hover:text-sky-600"
-                  >Products</a
-                >
-                <button
-                  onclick="openWhatsApp()"
-                  class="flex items-center gap-x-2 px-8 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-3xl text-lg font-semibold shadow-lg shadow-emerald-500/30"
-                >
-                  <i class="fa-brands fa-whatsapp text-2xl"></i>
-                  Contact Us
-                </button>
-              </div>
-
-              <!-- Mobile Hamburger -->
-              <button
-                onclick="toggleMobileNav()"
-                class="md:hidden w-12 h-12 flex items-center justify-center text-3xl text-gray-700 hover:text-sky-600"
-              >
-                <i id="hamburger-icon" class="fa-solid fa-bars"></i>
-              </button>
-            </div>
-
-            <!-- Mobile Navigation Menu -->
-            <div
-              id="mobile-menu"
-              class="hidden mobile-nav md:hidden bg-white border-t py-6 px-6 flex flex-col gap-y-6 text-xl font-medium"
+  <body class="font-sans">
+    <!-- NAVBAR -->
+    <nav class="bg-white border-b sticky top-0 z-50 shadow-sm">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex justify-between items-center h-20">
+          <!-- Logo -->
+          <div class="flex items-center gap-x-3">
+            <img
+              src="images/logo.jpg"
+              alt="Capital Appliances Logo"
+              class="h-12 object-contain"
+            />
+            <h1
+              class="text-3xl font-semibold tracking-tighter text-gray-900"
+              style="font-family: &quot;Space Grotesk&quot;, sans-serif"
             >
-              <a
-                href="#"
-                onclick="
-                  navigateToSection('hero');
-                  toggleMobileNav();
-                "
-                class="flex items-center gap-x-3 text-gray-700 hover:text-sky-600"
-              >
-                <i class="fa-solid fa-house w-6"></i> Home
-              </a>
-              <a
-                href="#"
-                onclick="
-                  navigateToSection('products');
-                  toggleMobileNav();
-                "
-                class="flex items-center gap-x-3 text-gray-700 hover:text-sky-600"
-              >
-                <i class="fa-solid fa-store w-6"></i> Products
-              </a>
-              <button
-                onclick="
-                  openWhatsApp();
-                  toggleMobileNav();
-                "
-                class="mt-4 w-full flex justify-center items-center gap-x-3 py-5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-3xl text-2xl font-semibold shadow-lg"
-              >
-                <i class="fa-brands fa-whatsapp text-3xl"></i>
-                Chat with us on WhatsApp
-              </button>
-            </div>
+              capital <span class="text-sky-600">appliances</span>
+            </h1>
           </div>
-        </nav>
 
-        <!-- HERO / HOMEPAGE -->
-        <section
-          id="hero"
-          class="hero-bg min-h-screen flex items-center relative"
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center gap-x-10 text-lg font-medium">
+            <a
+              href="index.html"
+              class="nav-link text-gray-700 hover:text-sky-600"
+              >Home</a
+            >
+            <a
+              href="products.html"
+              class="nav-link text-gray-700 hover:text-sky-600"
+              >Products</a
+            >
+            <button
+              onclick="openWhatsApp()"
+              class="flex items-center gap-x-2 px-8 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-3xl text-lg font-semibold"
+            >
+              <i class="fa-brands fa-whatsapp text-2xl"></i>
+              Contact Us
+            </button>
+          </div>
+
+          <!-- Mobile Hamburger -->
+          <button
+            onclick="toggleMobileNav()"
+            class="md:hidden text-3xl text-gray-700"
+          >
+            <i id="hamburger-icon" class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobile-menu"
+          class="hidden md:hidden bg-white border-t py-6 px-6 flex flex-col gap-y-6 text-xl font-medium"
         >
-          <!-- Overlay -->
+          <a
+            href="index.html"
+            onclick="toggleMobileNav()"
+            class="flex items-center gap-x-3"
+            >Home</a
+          >
+          <a
+            href="products.html"
+            onclick="toggleMobileNav()"
+            class="flex items-center gap-x-3"
+            >Products</a
+          >
+          <button
+            onclick="
+              openWhatsApp();
+              toggleMobileNav();
+            "
+            class="mt-4 w-full py-5 bg-emerald-500 text-white rounded-3xl text-2xl font-semibold"
+          >
+            <i class="fa-brands fa-whatsapp"></i> Chat with us on WhatsApp
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-bg min-h-screen flex items-center relative">
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-transparent"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-6 relative z-10 pt-20 md:pt-0">
+        <div class="max-w-2xl">
           <div
-            class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-transparent"
-          ></div>
+            class="inline-flex items-center gap-x-2 bg-white/20 backdrop-blur-md text-white text-sm font-medium px-5 py-2 rounded-3xl border border-white/30 mb-6"
+          >
+            <div
+              class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"
+            ></div>
+            NOW SERVING LAGOS &amp; ALL NIGERIA
+          </div>
 
-          <div class="max-w-7xl mx-auto px-6 relative z-10 pt-20 md:pt-0">
-            <div class="max-w-2xl">
+          <h1
+            class="text-6xl md:text-7xl font-semibold leading-none text-white tracking-tighter mb-6"
+            style="font-family: &quot;Space Grotesk&quot;, sans-serif"
+          >
+            Premium appliances.<br />Built to last.
+          </h1>
+
+          <p class="text-2xl text-white/90 mb-10 max-w-md">
+            Home • Office • Commercial<br />
+            Quality you trust. Delivery you love.
+          </p>
+
+          <!-- Changed to link to separate page -->
+          <a
+            href="products.html"
+            class="px-10 py-5 bg-white text-gray-900 hover:bg-gray-100 rounded-3xl text-2xl font-semibold flex items-center gap-x-3 shadow-2xl shadow-black/30"
+          >
+            <span>Browse Products</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT US TEASER -->
+    <section class="py-16 bg-white border-t border-b">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-12 gap-10 items-center">
+          <div class="md:col-span-7">
+            <h2 class="text-4xl font-semibold tracking-tighter mb-6">
+              About Capital Appliances
+            </h2>
+            <p class="text-xl text-gray-600 leading-relaxed">
+              Based in Lagos, we are Nigeria’s trusted supplier of premium home
+              appliances, office equipment, and heavy-duty commercial solutions.
+            </p>
+            <button
+              onclick="openWhatsApp()"
+              class="mt-8 flex items-center gap-x-4 text-lg font-semibold text-emerald-600"
+            >
+              <i class="fa-brands fa-whatsapp text-3xl"></i>
+              Talk to the owner directly
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white">
+      <div class="max-w-7xl mx-auto px-6 pt-16 pb-12">
+        <div class="grid md:grid-cols-12 gap-10">
+          <div class="md:col-span-5">
+            <div class="flex items-center gap-x-3 mb-6">
               <div
-                class="inline-flex items-center gap-x-2 bg-white/20 backdrop-blur-md text-white text-sm font-medium px-5 py-2 rounded-3xl border border-white/30 mb-6"
+                class="w-10 h-10 bg-white rounded-2xl flex items-center justify-center text-gray-900 text-3xl"
               >
-                <div
-                  class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"
-                ></div>
-                NOW SERVING LAGOS &amp; ALL NIGERIA
+                💼
               </div>
-
               <h1
-                class="text-6xl md:text-7xl font-semibold leading-none text-white tracking-tighter mb-6"
+                class="text-4xl font-semibold tracking-tighter"
                 style="font-family: &quot;Space Grotesk&quot;, sans-serif"
               >
-                Premium appliances.<br />
-                Built to last.
+                capital <span class="text-emerald-400">appliances</span>
               </h1>
-
-              <p class="text-2xl text-white/90 mb-10 max-w-md">
-                Home • Office • Commercial<br />
-                Quality you trust. Delivery you love.
-              </p>
-
-              <div class="flex flex-wrap gap-4">
-                <button
-                  onclick="navigateToSection('products')"
-                  class="px-10 py-5 bg-white text-gray-900 hover:bg-gray-100 rounded-3xl text-2xl font-semibold flex items-center gap-x-3 shadow-2xl shadow-black/30"
-                >
-                  <span>Browse Products</span>
-                  <i class="fa-solid fa-arrow-right"></i>
-                </button>
-
-                <button
-                  onclick="openWhatsApp()"
-                  class="px-10 py-5 border-2 border-white text-white hover:bg-white/10 rounded-3xl text-2xl font-semibold flex items-center gap-x-3"
-                >
-                  <i class="fa-brands fa-whatsapp text-3xl"></i>
-                  <span>Chat with owner</span>
-                </button>
-              </div>
-
-              <div class="mt-16 flex items-center gap-x-12 text-white">
-                <div>
-                  <div class="text-4xl font-semibold">500+</div>
-                  <div class="text-sm tracking-widest uppercase">
-                    Happy clients
-                  </div>
-                </div>
-                <div>
-                  <div class="text-4xl font-semibold"></div>
-                  <div class="text-sm tracking-widest uppercase"></div>
-                </div>
-                <div>
-                  <div class="text-4xl font-semibold">48hrs</div>
-                  <div class="text-sm tracking-widest uppercase">
-                    Delivery in Lagos and beyond.
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
+            <p class="text-gray-400">
+              Premium home, office &amp; commercial appliances delivered with
+              excellence across Nigeria.
+            </p>
 
-          <!-- Trust badges -->
-          <div
-            class="absolute bottom-10 left-1/2 md:left-auto md:right-10 flex flex-col md:flex-row gap-6 items-center text-white/80 text-sm"
-          >
-            <div class="flex items-center gap-x-2">
-              <i class="fa-solid fa-shield-halved"></i>
-              <span>100% Genuine Products</span>
-            </div>
-            <div class="flex items-center gap-x-2">
-              <i class="fa-solid fa-truck-fast"></i>
-              <span>Fast Nationwide Delivery</span>
-            </div>
-            <div class="flex items-center gap-x-2">
-              <i class="fa-solid fa-medal"></i>
-              <span>Premium Brands</span>
-            </div>
-          </div>
-
-          <!-- Scroll indicator -->
-          <div
-            class="hidden md:flex absolute bottom-8 left-1/2 flex-col items-center text-white/60 text-xs tracking-widest"
-          >
-            <div>SCROLL FOR MORE</div>
-            <i class="fa-solid fa-chevron-down animate-bounce mt-2"></i>
-          </div>
-        </section>
-
-        <!-- PRODUCTS SECTION -->
-        <section id="products" class="py-20 bg-gray-50">
-          <div class="max-w-7xl mx-auto px-6">
             <div
-              class="flex flex-col md:flex-row justify-between items-end mb-12"
+              onclick="openWhatsApp()"
+              class="mt-8 inline-flex items-center gap-x-3 bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-4 rounded-3xl cursor-pointer"
             >
+              <i class="fa-brands fa-whatsapp text-4xl"></i>
               <div>
-                <span class="uppercase text-sky-600 font-medium tracking-[2px]"
-                  >OUR COLLECTION</span
-                >
-                <h2
-                  class="text-5xl font-semibold tracking-tighter text-gray-900"
-                >
-                  Premium Appliances
-                </h2>
-              </div>
-              <a
-                onclick="openWhatsApp()"
-                class="hidden md:flex items-center text-sky-600 hover:text-sky-700 font-medium group"
-              >
-                View all products on WhatsApp
-                <i
-                  class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1"
-                ></i>
-              </a>
-            </div>
-
-            <!-- Category Tabs -->
-            <div class="flex flex-wrap gap-2 mb-10 border-b pb-4">
-              <button
-                onclick="filterCategory('all')"
-                id="tab-all"
-                class="active-tab px-7 py-3 rounded-3xl font-medium bg-white shadow-sm border text-gray-900"
-              >
-                All Appliances
-              </button>
-              <button
-                onclick="filterCategory('home')"
-                id="tab-home"
-                class="px-7 py-3 rounded-3xl font-medium hover:bg-white"
-              >
-                Home Appliances
-              </button>
-              <button
-                onclick="filterCategory('office')"
-                id="tab-office"
-                class="px-7 py-3 rounded-3xl font-medium hover:bg-white"
-              >
-                Office Equipment
-              </button>
-              <button
-                onclick="filterCategory('commercial')"
-                id="tab-commercial"
-                class="px-7 py-3 rounded-3xl font-medium hover:bg-white"
-              >
-                Kitchen Appliances
-              </button>
-            </div>
-
-            <!-- Products Grid -->
-            <div
-              id="products-grid"
-              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
-            >
-              <!-- Populated by JavaScript below -->
-            </div>
-          </div>
-        </section>
-
-        <!-- ABOUT US TEASER (before footer) -->
-        <section class="py-16 bg-white border-t border-b">
-          <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-12 gap-10 items-center">
-              <div class="md:col-span-7">
-                <h2 class="text-4xl font-semibold tracking-tighter mb-6">
-                  About Capital Appliances
-                </h2>
-                <p class="text-xl text-gray-600 leading-relaxed">
-                  Based in Lagos, we are Nigeria’s trusted supplier of premium
-                  home appliances, office equipment, and heavy-duty commercial
-                  solutions. From smart refrigerators to industrial freezers,
-                  every product is handpicked for durability, energy efficiency,
-                  and modern design.
-                </p>
-                <p class="text-xl text-gray-600 leading-relaxed mt-6">
-                  Over 500+ clients across Lagos State and beyond already enjoy
-                  faster service, genuine brands.
-                </p>
-                <button
-                  onclick="openWhatsApp()"
-                  class="mt-8 flex items-center gap-x-4 text-lg font-semibold text-emerald-600"
-                >
-                  <i class="fa-brands fa-whatsapp text-3xl"></i>
-                  Talk to the owner directly
-                </button>
-              </div>
-              <div
-                class="md:col-span-5 bg-gray-100 rounded-3xl p-8 text-center"
-              >
-                <div class="text-6xl mb-4">🇳🇬</div>
-                <div class="font-medium text-2xl">Proudly Nigerian</div>
-                <div class="text-sm text-gray-500">
-                  Lagos • Ibadan • Abuja • Nationwide delivery
-                </div>
-                <div class="mt-8 grid grid-cols-3 gap-6 text-center">
-                  <div>
-                    <div class="text-4xl font-bold text-sky-600">24</div>
-                    <div class="text-xs uppercase">Months minimum warranty</div>
-                  </div>
-                  <div>
-                    <div class="text-4xl font-bold text-sky-600">15+</div>
-                    <div class="text-xs uppercase">Premium brands</div>
-                  </div>
-                  <div>
-                    <div class="text-4xl font-bold text-sky-600">∞</div>
-                    <div class="text-xs uppercase">After-sales support</div>
-                  </div>
+                <div class="font-semibold">Chat with the business owner</div>
+                <div class="text-sm opacity-75">
+                  Instant replies • 24/7 support
                 </div>
               </div>
             </div>
           </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer class="bg-gray-900 text-white">
-          <div class="max-w-7xl mx-auto px-6 pt-16 pb-12">
-            <div class="grid md:grid-cols-12 gap-10">
-              <!-- Left Column -->
-              <div class="md:col-span-5">
-                <div class="flex items-center gap-x-3 mb-6">
-                  <div
-                    class="w-10 h-10 bg-white rounded-2xl flex items-center justify-center text-gray-900 text-3xl"
-                  >
-                    💼
-                  </div>
-                  <h1
-                    class="text-4xl font-semibold tracking-tighter"
-                    style="font-family: &quot;Space Grotesk&quot;, sans-serif"
-                  >
-                    capital <span class="text-emerald-400">appliances</span>
-                  </h1>
-                </div>
-                <p class="text-gray-400 max-w-xs">
-                  Premium home, office &amp; commercial appliances delivered
-                  with excellence across Nigeria.
-                </p>
-
-                <!-- WhatsApp in Footer -->
-                <div
-                  onclick="openWhatsApp()"
-                  class="mt-8 inline-flex items-center gap-x-3 bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-4 rounded-3xl cursor-pointer"
-                >
-                  <i class="fa-brands fa-whatsapp text-4xl"></i>
-                  <div>
-                    <div class="font-semibold">
-                      Chat with the business owner
-                    </div>
-                    <div class="text-sm opacity-75">
-                      Instant replies • 24/7 support
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Quick Links -->
-              <div class="md:col-span-2">
-                <h4
-                  class="uppercase text-xs tracking-widest mb-6 text-gray-400"
-                >
-                  Company
-                </h4>
-                <div class="flex flex-col gap-y-4 text-lg">
-                  <a
-                    href="#"
-                    onclick="navigateToSection('hero')"
-                    class="hover:text-emerald-400"
-                    >Home</a
-                  >
-                  <a
-                    href="#"
-                    onclick="navigateToSection('products')"
-                    class="hover:text-emerald-400"
-                    >Products</a
-                  >
-                  <a
-                    href="#"
-                    onclick="openWhatsApp()"
-                    class="hover:text-emerald-400"
-                    >Contact Us</a
-                  >
-                </div>
-              </div>
-
-              <!-- Products -->
-              <div class="md:col-span-2">
-                <h4
-                  class="uppercase text-xs tracking-widest mb-6 text-gray-400"
-                >
-                  Shop By
-                </h4>
-                <div class="flex flex-col gap-y-4 text-lg">
-                  <a
-                    href="#"
-                    onclick="
-                      filterCategory('home');
-                      navigateToSection('products');
-                    "
-                    class="hover:text-emerald-400"
-                    >Home Appliances</a
-                  >
-                  <a
-                    href="#"
-                    onclick="
-                      filterCategory('office');
-                      navigateToSection('products');
-                    "
-                    class="hover:text-emerald-400"
-                    >Office Equipment</a
-                  >
-                  <a
-                    href="#"
-                    onclick="
-                      filterCategory('commercial');
-                      navigateToSection('products');
-                    "
-                    class="hover:text-emerald-400"
-                    >Commercial Appliances</a
-                  >
-                </div>
-              </div>
-
-              <!-- Contact Info -->
-              <div class="md:col-span-3">
-                <h4
-                  class="uppercase text-xs tracking-widest mb-6 text-gray-400"
-                >
-                  Get in touch
-                </h4>
-                <div class="flex items-center gap-x-3 mb-6">
-                  <i class="fa-solid fa-phone text-emerald-400"></i>
-                  <a href="tel:+2340000000000" class="text-2xl font-medium"
-                    >Call us: 08135834714</a
-                  >
-                </div>
-                <div class="text-gray-400 text-sm leading-relaxed">
-                  📍 Ikeja, Lagos State, Nigeria<br />
-                  Open Monday – Saturday<br />
-                  8am – 6pm
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="border-t border-gray-800 mt-16 pt-8 text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4"
-            >
-              <div>© 2026 Capital Appliances • All Rights Reserved</div>
-              <div class="flex gap-x-6">
-                <a href="#" class="hover:text-white">Privacy</a>
-                <a href="#" class="hover:text-white">Terms</a>
-                <a
-                  href="#"
-                  onclick="openWhatsApp()"
-                  class="hover:text-emerald-400"
-                  >Made with ❤️ in Lagos</a
-                >
-              </div>
-              <div class="text-emerald-400">
-                WhatsApp only • Fast replies guaranteed
-              </div>
-            </div>
-          </div>
-        </footer>
-
-        <!-- FLOATING WHATSAPP BUTTON -->
-        <button
-          onclick="openWhatsApp()"
-          class="whatsapp-float fixed bottom-8 right-8 md:right-12 w-16 h-16 bg-[#25D366] hover:bg-[#20C65B] rounded-3xl shadow-2xl flex items-center justify-center text-white z-[9999] text-4xl"
+        </div>
+        <div
+          class="border-t border-gray-800 mt-16 pt-8 text-xs text-gray-500 text-center"
         >
-          <i class="fa-brands fa-whatsapp"></i>
-        </button>
+          © 2026 Capital Appliances • All Rights Reserved
+        </div>
+      </div>
+    </footer>
 
-        <script>
-          // TailwindCSS initialization
-          function initializeTailwind() {
-            return {
-              config(userConfig = {}) {
-                return {
-                  configUser: userConfig,
-                  theme: {
-                    extend: {
-                      fontFamily: {
-                        sans: ["Inter", "system_ui", "sans-serif"],
-                      },
-                    },
-                  },
-                };
-              },
-              theme(userConfig = {}) {
-                return {
-                  ...this.defaultTheme(),
-                  ...this.config(userConfig).theme,
-                };
-              },
-              defaultTheme() {
-                return {
-                  extend: {},
-                };
-              },
-            };
-          }
+    <!-- Floating WhatsApp -->
+    <button
+      onclick="openWhatsApp()"
+      class="fixed bottom-8 right-8 w-16 h-16 bg-[#25D366] rounded-3xl shadow-2xl flex items-center justify-center text-white text-4xl z-50"
+    >
+      <i class="fa-brands fa-whatsapp"></i>
+    </button>
 
-          // Main initialization
-          function initialize() {
-            const config = initializeTailwind().theme();
-            return {
-              configUser: {},
-              theme: config,
-            };
-          }
+    <script>
+      function openWhatsApp() {
+        const phone = "234XXXXXXXXXX"; // ← CHANGE TO YOUR REAL WHATSAPP NUMBER
+        const message = encodeURIComponent(
+          "Hello! I'm interested in your premium appliances.",
+        );
+        window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+      }
 
-          // Sample products data
-          const productsData = [
-            {
-              id: 1,
-              category: "home",
-              name: "Stool",
-              price: "₦85,000",
-              image: "images/barstool.jpg",
-              tag: "Best Seller",
-            },
-            {
-              id: 2,
-              category: "home",
-              name: "Cooker",
-              price: "₦785,000",
-              image: "images/doublecooker.jpg",
-              tag: "",
-            },
-            {
-              id: 3,
-              category: "home",
-              name: "Electric Oven",
-              price: "₦920,000",
-              image: "images/oven.jpg",
-              tag: "",
-            },
-            {
-              id: 4,
-              category: "office",
-              name: "Daikin 2HP Office Split AC",
-              price: "₦1,150,000",
-              image: "images/something2.jpg",
-              tag: "Office Favorite",
-            },
-            {
-              id: 5,
-              category: "office",
-              name: "High-Speed Office Coffee Machine",
-              price: "₦450,000",
-              image: "images/something1.jpg",
-              tag: "",
-            },
-            {
-              id: 6,
-              category: "kitchen",
-              name: "Smoke extractor",
-              price: "₦450,000",
-              image: "images/extractor.jpg",
-              tag: "Heavy Duty",
-            },
-            {
-              id: 7,
-              category: "kitchen",
-              name: "Industrial 3-Burner Gas Cooker",
-              price: "₦680,000",
-              image: "images/gascooker1.jpg",
-              tag: "",
-            },
-            {
-              id: 8,
-              category: "kitchen",
-              name: "Microwave",
-              price: "Call for quote",
-              image: "images/microwave.jpg",
-              tag: "Custom",
-            },
-          ];
-
-          // Render products
-          function renderProducts(filteredProducts) {
-            const container = document.getElementById("products-grid");
-            container.innerHTML = "";
-
-            if (filteredProducts.length === 0) {
-              container.innerHTML = `
-                    <div class="col-span-full text-center py-12 text-gray-400 text-xl">
-                        No products found in this category yet.<br>
-                        <span onclick="openWhatsApp()" class="text-sky-600 cursor-pointer">Ask owner for custom options →</span>
-                    </div>`;
-              return;
-            }
-
-            filteredProducts.forEach((product) => {
-              const cardHTML = `
-                <div class="product-card bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm">
-                    <div class="relative">
-                        <img src="${product.image}" alt="${product.name}" 
-                             class="w-full h-64 object-cover">
-                        ${product.tag ? `<span class="absolute top-4 left-4 bg-emerald-500 text-white text-xs font-medium px-4 py-1 rounded-3xl">${product.tag}</span>` : ""}
-                    </div>
-                    <div class="p-6">
-                        <div class="text-sky-600 text-sm font-medium">${product.category.toUpperCase()} APPLIANCE</div>
-                        <h3 class="text-2xl font-semibold mt-2 leading-tight">${product.name}</h3>
-                        <div class="mt-6 flex justify-between items-end">
-                            <div>
-                                <div class="text-xs text-gray-400">STARTING AT</div>
-                                <div class="text-3xl font-semibold text-gray-900">${product.price}</div>
-                            </div>
-                            <button onclick="openWhatsApp()" 
-                                    class="flex items-center justify-center w-12 h-12 bg-emerald-500 hover:bg-emerald-600 rounded-2xl text-white text-2xl">
-                                <i class="fa-brands fa-whatsapp"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>`;
-              container.innerHTML += cardHTML;
-            });
-          }
-
-          // Filter products
-          function filterCategory(category) {
-            // Remove active class from all tabs
-            document
-              .querySelectorAll("#products .flex button")
-              .forEach((btn) => {
-                btn.classList.remove(
-                  "active-tab",
-                  "bg-white",
-                  "shadow-sm",
-                  "border",
-                );
-                if (
-                  btn.id === "tab-" + category ||
-                  (category === "all" && btn.id === "tab-all")
-                ) {
-                  btn.classList.add(
-                    "active-tab",
-                    "bg-white",
-                    "shadow-sm",
-                    "border",
-                  );
-                }
-              });
-
-            let filtered = productsData;
-
-            if (category !== "all") {
-              filtered = productsData.filter((p) => p.category === category);
-            }
-
-            renderProducts(filtered);
-          }
-
-          // Open WhatsApp chat
-          function openWhatsApp() {
-            const phone = "2348135834714";
-
-            const message = encodeURIComponent(
-              "Hello! I visited capital-appliances website and would like to know more about your premium appliances.",
-            );
-            window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
-          }
-
-          // Simple navigation between sections
-          function navigateToSection(section) {
-            const el = document.getElementById(section);
-            if (el) {
-              el.scrollIntoView({ behavior: "smooth" });
-            }
-          }
-
-          // Mobile menu toggle
-          let menuOpen = false;
-          function toggleMobileNav() {
-            const menu = document.getElementById("mobile-menu");
-            const icon = document.getElementById("hamburger-icon");
-
-            menuOpen = !menuOpen;
-
-            if (menuOpen) {
-              menu.style.display = "flex";
-              icon.classList.replace("fa-bars", "fa-xmark");
-            } else {
-              menu.style.display = "none";
-              icon.classList.replace("fa-xmark", "fa-bars");
-            }
-          }
-
-          // Initialize everything when page loads
-          window.onload = function () {
-            initialize();
-
-            // Render all products initially
-            renderProducts(productsData);
-
-            console.log(
-              "%c✅ Capital Appliances website ready! Background image should load from /public/background.jpg",
-              "color:#0ea5e9; font-size:13px",
-            );
-
-            // Bonus: keyboard shortcut for owner (just for fun)
-            console.log(
-              '%cPress "C" to instantly open WhatsApp chat with the owner',
-              "color:#10b981; font-size:11px",
-            );
-            document.addEventListener("keypress", function (e) {
-              if (e.key.toLowerCase() === "c") openWhatsApp();
-            });
-          };
-        </script>
-      </body>
-    </html>
+      function toggleMobileNav() {
+        const menu = document.getElementById("mobile-menu");
+        const icon = document.getElementById("hamburger-icon");
+        menu.classList.toggle("hidden");
+        icon.classList.toggle("fa-bars");
+        icon.classList.toggle("fa-xmark");
+      }
+    </script>
   </body>
 </html>
