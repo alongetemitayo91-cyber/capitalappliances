@@ -35,6 +35,27 @@
         </div>
       </div>
     </nav>
+     <!-- STICKY SEARCH BAR -->
+<div class="sticky top-20 z-50 bg-gray-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 py-4">
+
+    <div class="max-w-xl mx-auto relative">
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="Search products..."
+        class="w-full p-4 rounded-2xl border shadow-sm outline-none"
+        oninput="handleSearch(this.value)"
+      />
+
+      <div
+        id="suggestions"
+        class="absolute w-full bg-white shadow-lg rounded-2xl mt-2 hidden max-h-64 overflow-y-auto z-50"
+      ></div>
+    </div>
+
+  </div>
+</div>
 
     <!-- MAIN -->
     <div class="max-w-7xl mx-auto px-6 py-16">
@@ -46,23 +67,7 @@
         Search, filter and find what you need
       </p>
 
-      <!-- SEARCH -->
-      <div
-        class="max-w-xl mx-auto mb-6 relative sticky top-0 z-40 bg-gray-50 py-3"
-      >
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="Search products..."
-          class="w-full p-4 rounded-2xl border shadow-sm outline-none"
-          oninput="handleSearch(this.value)"
-        />
-
-        <div
-          id="suggestions"
-          class="absolute w-full bg-white shadow-lg rounded-2xl mt-2 hidden max-h-64 overflow-y-auto z-50"
-        ></div>
-      </div>
+     
 
       <!-- CATEGORY FILTER BUTTONS -->
       <div class="flex flex-wrap justify-center gap-3 mb-10">
