@@ -26,36 +26,52 @@
             Capital <span class="text-sky-600">Appliances</span>
           </h1>
 
-          <button
-            onclick="openWhatsApp()"
-            class="bg-emerald-500 text-white px-6 py-3 rounded-3xl"
-          >
-            Contact
-          </button>
+          <button onclick="openMenu()" class="md:hidden text-3xl">☰</button>
         </div>
       </div>
     </nav>
-     <!-- STICKY SEARCH BAR -->
-<div class="sticky top-20 z-50 bg-gray-50 shadow-sm">
-  <div class="max-w-7xl mx-auto px-6 py-4">
+    <!-- MOBILE SIDEBAR -->
+    <div
+      id="sidebar"
+      class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50"
+    >
+      <div class="p-6 flex justify-between items-center border-b">
+        <h2 class="text-xl font-semibold">Menu</h2>
+        <button onclick="closeMenu()" class="text-2xl">✕</button>
+      </div>
 
-    <div class="max-w-xl mx-auto relative">
-      <input
-        id="searchInput"
-        type="text"
-        placeholder="Search products..."
-        class="w-full p-4 rounded-2xl border shadow-sm outline-none"
-        oninput="handleSearch(this.value)"
-      />
+      <div class="p-6 space-y-4">
+        <a href="index.html" class="block text-lg font-medium"> Home </a>
 
-      <div
-        id="suggestions"
-        class="absolute w-full bg-white shadow-lg rounded-2xl mt-2 hidden max-h-64 overflow-y-auto z-50"
-      ></div>
+        <a href="products.html" class="block text-lg font-medium"> Products </a>
+      </div>
     </div>
 
-  </div>
-</div>
+    <!-- OVERLAY -->
+    <div
+      id="overlay"
+      onclick="closeMenu()"
+      class="fixed inset-0 bg-black bg-opacity-40 hidden z-40"
+    ></div>
+    <!-- STICKY SEARCH BAR -->
+    <div class="sticky top-20 z-50 bg-gray-50 shadow-sm">
+      <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class="max-w-xl mx-auto relative">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search products..."
+            class="w-full p-4 rounded-2xl border shadow-sm outline-none"
+            oninput="handleSearch(this.value)"
+          />
+
+          <div
+            id="suggestions"
+            class="absolute w-full bg-white shadow-lg rounded-2xl mt-2 hidden max-h-64 overflow-y-auto z-50"
+          ></div>
+        </div>
+      </div>
+    </div>
 
     <!-- MAIN -->
     <div class="max-w-7xl mx-auto px-6 py-16">
@@ -66,8 +82,6 @@
       <p class="text-center text-gray-600 mb-6">
         Search, filter and find what you need
       </p>
-
-     
 
       <!-- CATEGORY FILTER BUTTONS -->
       <div class="flex flex-wrap justify-center gap-3 mb-10">
@@ -337,6 +351,17 @@
       }
 
       renderProducts(products);
+      function openMenu() {
+        document
+          .getElementById("sidebar")
+          .classList.remove("-translate-x-full");
+        document.getElementById("overlay").classList.remove("hidden");
+      }
+
+      function closeMenu() {
+        document.getElementById("sidebar").classList.add("-translate-x-full");
+        document.getElementById("overlay").classList.add("hidden");
+      }
     </script>
     <footer class="bg-gray-900 text-white mt-20">
       <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
